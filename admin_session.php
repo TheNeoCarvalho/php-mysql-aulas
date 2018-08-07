@@ -24,6 +24,7 @@
 	<style type="text/css">
 		.nav-link { color:#fff; font-weight: 700 }
 		.nav-link:hover { color: #000; font-weight: 700}
+		nav h3 { color: #fff }
 	</style>
 </head>
 <body>
@@ -36,13 +37,28 @@
 		$query = mysqli_query($conexao, $sql);
 		while($menus = mysqli_fetch_assoc($query)){
 			echo "<li class='nav-item'>
-		             <a class='nav-link' href='".$menus['url']."'>".$menus['titulo']."</a>
+		             <a class='nav-link' href='?page=".$menus['url']."'>".strtoupper($menus['titulo'])."</a>
 		  	      </li>";
 		}
 	?>
 </ul>
- </nav>
+</nav>
 <a style="color: white; float:right" href="?sair">Sair</a>
 </nav>
+	<div class="container">
+		<?php
+			if(isset($_REQUEST['page'])){
+				if($_REQUEST['page'] == 'home'){
+					include('pages/home.php');
+				}else if($_REQUEST['page'] == 'sobre'){
+					include('pages/sobre.php');
+				}else if($_REQUEST['page'] == 'artigos'){
+					include('pages/artigos.php');
+				}else{
+					include('pages/home.php');
+				}
+			}
+		?>
+	</div>
 </body>
 </html>
