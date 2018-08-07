@@ -54,6 +54,8 @@
 					include('pages/sobre.php');
 				}else if($_REQUEST['page'] == 'artigos'){
 					include('pages/artigos.php');
+				}else if($_REQUEST['page'] == 'menu'){
+					include('pages/menu.php');
 				}else{
 					include('pages/home.php');
 				}
