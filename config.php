@@ -3,7 +3,7 @@
 define('HOST','localhost');
 define("USER","root");
 define("PASS","");
-define("DB","manoel");
+define("DB","projeto");
 
 //Conexão com BD
 $conexao = mysqli_connect(HOST, USER, PASS, DB);

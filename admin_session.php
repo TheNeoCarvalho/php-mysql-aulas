@@ -19,26 +19,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Dashboard Admin</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<style type="text/css">
-		.nav-link { color:#fff; font-weight: 700 }
-		.nav-link:hover { color: #000; font-weight: 700}
-		nav h3 { color: #fff }
-	</style>
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
- <h3>Seja bem vindo, <?php echo $user;?></h3>
+ <h3><span class="DS">D</span>ata <span  class="DS">S</span>ystem</h3>
  <nav>
  <ul class="nav">
 	<?php
-		$sql = "SELECT * FROM menu";
+		$sql = "SELECT * FROM menu WHERE estado = 'a'";
 		$query = mysqli_query($conexao, $sql);
+		$mn = array();
 		while($menus = mysqli_fetch_assoc($query)){
 			echo "<li class='nav-item'>
 		             <a class='nav-link' href='?page=".$menus['url']."'>".strtoupper($menus['titulo'])."</a>
 		  	      </li>";
+		  	array_push($mn, $menus['titulo']); 
 		}
 	?>
 </ul>
@@ -48,16 +48,11 @@
 	<div class="container">
 		<?php
 			if(isset($_REQUEST['page'])){
-				if($_REQUEST['page'] == 'home'){
-					include('pages/home.php');
-				}else if($_REQUEST['page'] == 'sobre'){
-					include('pages/sobre.php');
-				}else if($_REQUEST['page'] == 'artigos'){
-					include('pages/artigos.php');
-				}else if($_REQUEST['page'] == 'menu'){
-					include('pages/menu.php');
-				}else{
-					include('pages/home.php');
+				foreach ($mn as $m) {
+					
+					if($_REQUEST['page'] == $m){
+						include('pages/'.$m.'.php');
+					}
 				}
 			}
 		?>
