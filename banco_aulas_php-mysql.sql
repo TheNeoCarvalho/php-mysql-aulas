@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Ago-2018 às 14:46
+-- Generation Time: 14-Ago-2018 às 14:21
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `manoel`
+-- Database: `projeto`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `artigos` (
   `titulo` varchar(100) NOT NULL,
   `conteudo` text NOT NULL,
   `views` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `artigos`
@@ -51,19 +51,20 @@ INSERT INTO `artigos` (`id`, `titulo`, `conteudo`, `views`) VALUES
 
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(20) NOT NULL,
-  `url` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `titulo` varchar(50) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `status` enum('ativo','inativo') NOT NULL,
+  `icon` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `menu`
 --
 
-INSERT INTO `menu` (`id`, `titulo`, `url`) VALUES
-(1, 'home', 'home'),
-(2, 'sobre', 'sobre'),
-(3, 'artigos', 'artigos'),
-(6, 'menu', 'menu');
+INSERT INTO `menu` (`id`, `titulo`, `url`, `status`, `icon`) VALUES
+(3, 'artigos', 'artigos', 'ativo', 'fa fa-file-text-o'),
+(6, 'menu', 'menu', 'ativo', 'fa fa-bars'),
+(12, 'neop', 'neop', 'inativo', '');
 
 -- --------------------------------------------------------
 
@@ -73,12 +74,12 @@ INSERT INTO `menu` (`id`, `titulo`, `url`) VALUES
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
-  `nome` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `usuario` varchar(12) CHARACTER SET utf32 NOT NULL,
-  `senha` varchar(32) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `descricao` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nome` varchar(50) NOT NULL,
+  `usuario` varchar(12) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `descricao` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -94,44 +95,20 @@ INSERT INTO `usuario` (`id`, `nome`, `usuario`, `senha`, `email`, `descricao`) V
 --
 
 --
--- Indexes for table `artigos`
---
-ALTER TABLE `artigos`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `usuario` (`usuario`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `artigos`
---
-ALTER TABLE `artigos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
