@@ -4,7 +4,17 @@ require("config.php");
 
 $t = $_POST['menu'];
 $u = $_POST['url'];
-$sql = "INSERT INTO menu (titulo,url) VALUES ('$t','$u')";
+$e = $_POST['status'];
+
+if(empty($_POST['status'])){
+	$status = "inativo";
+}else{
+	$status = "ativo";
+}
+
+
+$sql = "INSERT INTO menu (titulo,url,status) VALUES ('$t','$u', '$status')";
+
 $query = mysqli_query($conexao, $sql);
 if($query){
 	$pagina = fopen("pages/".$t.".php", "a");

@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Artigos</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
 	<style type="text/css">
 		.card { width: 23%; float: left; margin: 5px 5px; }
 	</style>
@@ -47,6 +49,31 @@
 					}
 					}
 
+					if(isset($_GET['visibilidade'])){
+					if($_GET['visibilidade'] == 'on'){	
+						$sql = "UPDATE menu SET status = 'ativo' WHERE id = ".$_GET['id'];
+						$query = mysqli_query($conexao, $sql);
+
+						if($query){
+							echo "<script>
+								alert('Menu ativado!');
+								location.href = 'index.php?page=menu';
+							  </script>";
+						}
+					}
+					if($_GET['visibilidade'] == 'of'){	
+						$sql = "UPDATE menu SET status = 'inativo' WHERE id = ".$_GET['id'];
+						$query = mysqli_query($conexao, $sql);
+
+						if($query){
+							echo "<script>
+								alert('Menu desativado!');
+								location.href = 'index.php?page=menu';
+							  </script>";
+						}
+					}
+					}
+
 					if(mysqli_num_rows($query) < 1){
 						echo "<tr class='text-center'><td colspan='3'>Não possui usuários cadastrados!</td><tr>";
 					}else{
@@ -54,9 +81,16 @@
 						echo "<tr>
 						  	<td>".$dados['id']."</td>
 						  	<td style='width:200px'>".$dados['titulo']."</td>
-						  	<td>".$dados['url']."</td>
-						  	<td></td>
-						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'>D</a> | A</td>
+						  	<td>".$dados['url']."</td>";
+
+						  	if($dados['status'] == "ativo"){
+						  		$estado = "<a href='?page=menu&id=".$dados['id']."&visibilidade=of'><i class='fa fa-eye'></i>";
+						  	}else{
+						  		$estado = "<a href='?page=menu&id=".$dados['id']."&visibilidade=on'><i class='fa fa-eye-slash'></i>";
+						  	}
+
+						  	echo "<td>".$estado."</i></td>
+						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'><i class='fa fa-trash'></i></a> | <a href='?page=menu&acao=u&menu=".$dados['titulo']."'><i class='fa fa-refresh'></i></a></td>
 						  </tr>";
 						}
 					}
@@ -75,6 +109,11 @@
 		  <div class="form-group">
 		    <label for="url">Link/URL</label>
 		    <input type="text" class="form-control" id="url" name="url">
+		  </div>
+		  <div class="form-group">
+		    <label for="url">Status</label><br>
+		    <input type="checkbox" id="status" name="status">
+		    Ativado
 		  </div>
 		  <button type="submit" class="btn btn-primary form-control">Cadastrar Menu</button>
 		   </fieldset>
