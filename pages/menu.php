@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Artigos</title>
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-	<style type="text/css">
-		.card { width: 23%; float: left; margin: 5px 5px; }
-	</style>
-</head>
-<body class="container-fluid">
 	<h3 class="jumbotron">Menu</h3>
 	<div class="row">
 		<div class="col-md-6">
@@ -91,16 +79,19 @@
 						  	}
 
 						  	echo "<td>".$estado."</i></td>
-						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'><i class='fa fa-trash'></i></a> | <a href='?page=menu&acao=u&menu=".$dados['titulo']."'><i class='fa fa-refresh'></i></a></td>
+						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'><i class='fa fa-trash'></i></a> | <a href='' data-toggle='modal' data-target='#exampleModal' data-id='".$dados['id']."' data-titulo='".$dados['titulo']."' data-url='".$dados['url']."'><i class='fa fa-refresh'></i></a></td>
 						  </tr>";
+						  //?page=menu&acao=u&menu=".$dados['titulo']."
 						}
 					}
 				?>
+
+
 			</tbody>
 		</table>
 		</div>
 		<div class="col-md-6">
-			<form method="post" action="cadMenu.php">
+		<form method="post" action="cadMenu.php">
 		  <fieldset>
 		  <div class="form-group">
 		   	<legend>Cadastro de Menu</legend>
@@ -121,5 +112,58 @@
 		</form>
 		</div>	
 	</div>
-</body>
-</html>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atualizar Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form method="post" action="cadMenu.php">
+		  <fieldset>
+		  <div class="form-group">
+		  	<label for="menu">Id do Menu</label>
+		    <input style="width: 80px" disabled="true" type="text" class="form-control" id="id" name="id">
+		  </div>
+		  <div class="form-group">
+		  	<label for="menu">Título do Menu</label>
+		    <input type="text" class="form-control" id="menu" name="menu">
+		  </div>
+		  <div class="form-group">
+		    <label for="url">Link/URL</label>
+		    <input type="text" class="form-control" id="url" name="url">
+		  </div>
+		  <div class="form-group">
+		    <label for="url">Status</label><br>
+		    <input type="checkbox" id="status" name="status">
+		    Ativado
+		  </div>
+		   </fieldset>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	
+ $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var recipientId = button.data('id')
+  var recipientTitulo = button.data('titulo')
+  var recipientUrl = button.data('url')
+  var modal = $(this)
+
+  modal.find('#id').val(recipientId)
+  modal.find('#menu').val(recipientTitulo)
+  modal.find('#url').val(recipientUrl)
+})
+</script>
