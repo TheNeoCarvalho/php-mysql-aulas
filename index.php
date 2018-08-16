@@ -36,7 +36,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
- <h3>Seja bem vindos, <?php echo $user;?></h3>
+ <h3>Seja bem vindo, [<?php echo strtoupper($user);?>]</h3>
  <nav>
  <ul class="nav">
 	<?php

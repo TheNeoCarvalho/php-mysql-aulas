@@ -84,9 +84,10 @@
 						  	<td>".$dados['url']."</td>";
 
 						  	if($dados['status'] == "ativo"){
-						  		$estado = "<a href='?page=menu&id=".$dados['id']."&visibilidade=of'><i class='fa fa-eye'></i>";
+						  		$estado = "<a title='Ativado' 
+						  		style='color:green' href='?page=menu&id=".$dados['id']."&visibilidade=of'><i class='fa fa-eye'></i>";
 						  	}else{
-						  		$estado = "<a href='?page=menu&id=".$dados['id']."&visibilidade=on'><i class='fa fa-eye-slash'></i>";
+						  		$estado = "<a title='Desativado' style='color:red' href='?page=menu&id=".$dados['id']."&visibilidade=on'><i class='fa fa-eye-slash'></i>";
 						  	}
 
 						  	echo "<td>".$estado."</i></td>
