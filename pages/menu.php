@@ -16,6 +16,8 @@
 				<?php
 					error_reporting(0);
 					include ('../config.php');
+
+					$check = false;
 					//SQL
 					$sql = "SELECT * FROM menu";
 
@@ -36,6 +38,7 @@
 						}
 					}
 					}
+
 
 					if(isset($_GET['visibilidade'])){
 					if($_GET['visibilidade'] == 'on'){	
@@ -71,6 +74,13 @@
 						  	<td style='width:200px'>".$dados['titulo']."</td>
 						  	<td>".$dados['url']."</td>";
 
+
+						  	if($dados['status'] == 'ativo'){
+						  		$check = true;
+						  	}else{
+						  		$check = false;
+						  	}
+
 						  	if($dados['status'] == "ativo"){
 						  		$estado = "<a title='Ativado' 
 						  		style='color:green' href='?page=menu&id=".$dados['id']."&visibilidade=of'><i class='fa fa-eye'></i>";
@@ -79,19 +89,16 @@
 						  	}
 
 						  	echo "<td>".$estado."</i></td>
-						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'><i class='fa fa-trash'></i></a> | <a href='' data-toggle='modal' data-target='#exampleModal' data-id='".$dados['id']."' data-titulo='".$dados['titulo']."' data-url='".$dados['url']."'><i class='fa fa-refresh'></i></a></td>
+						  	<td><a href='?page=menu&acao=d&menu=".$dados['titulo']."'><i class='fa fa-trash'></i></a> | <a href='' data-toggle='modal' data-target='#exampleModal' data-id='".$dados['id']."' data-titulo='".$dados['titulo']."' data-url='".$dados['url']."' data-status='".$dados['status']."'><i class='fa fa-refresh'></i></a></td>
 						  </tr>";
-						  //?page=menu&acao=u&menu=".$dados['titulo']."
 						}
 					}
 				?>
-
-
 			</tbody>
 		</table>
 		</div>
 		<div class="col-md-6">
-		<form method="post" action="cadMenu.php">
+		<form method="post" action="cadMenu.php?acao=i">
 		  <fieldset>
 		  <div class="form-group">
 		   	<legend>Cadastro de Menu</legend>
@@ -123,7 +130,7 @@
         </button>
       </div>
       <div class="modal-body">
-       <form method="post" action="cadMenu.php">
+       <form method="post" action="cadMenu.php?acao=u">
 		  <fieldset>
 		  <div class="form-group">
 		  	<label for="menu">Id do Menu</label>
@@ -137,18 +144,14 @@
 		    <label for="url">Link/URL</label>
 		    <input type="text" class="form-control" id="url" name="url">
 		  </div>
-		  <div class="form-group">
-		    <label for="url">Status</label><br>
-		    <input type="checkbox" id="status" name="status">
-		    Ativado
-		  </div>
-		   </fieldset>
+			</fieldset>
+		    <div class="modal-footer">
+        	<a href="?page=menu&acao=u" class="btn btn-secondary" data-dismiss="modal">Close</a>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+      </div>
 		</form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+    
     </div>
   </div>
 </div>
@@ -160,10 +163,13 @@
   var recipientId = button.data('id')
   var recipientTitulo = button.data('titulo')
   var recipientUrl = button.data('url')
+  var recipientStatus = button.data('status')
   var modal = $(this)
 
   modal.find('#id').val(recipientId)
   modal.find('#menu').val(recipientTitulo)
   modal.find('#url').val(recipientUrl)
+
+  
 })
 </script>

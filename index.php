@@ -35,33 +35,11 @@
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-primary">
- <h3>Seja bem vindo, [<?php echo strtoupper($user);?>]</h3>
- <nav>
- <ul class="nav">
-	<?php
-		$sql = "SELECT * FROM menu WHERE status = 'ativo'";
-		$query = mysqli_query($conexao, $sql);
-		$m = array();
-		while($menus = mysqli_fetch_assoc($query)){
-			echo "<li class='nav-item'>
-		             <a class='nav-link' href='?page=".$menus['url']."'><i class='".$menus['icon']."'></i> ".strtoupper($menus['titulo'])."</a>
-		  	      </li>";
-		  	array_push($m, $menus['titulo']);
-		}
-	?>
-</ul>
-</nav>
-<a style="color: white; float:right" href="?sair">Sair</a>
-</nav>
+<?php include('MeuMenu.php')?>
 	<div class="container">
 		<?php
 			if(isset($_REQUEST['page'])){
-				foreach ($m as $ms) {
-					if($_REQUEST['page'] == $ms){
-						include('pages/'.$ms.'.php');
-					}
-				}	
+				include("pages/".$_REQUEST['page'].".php");
 			}else{
 				include('pages/home.php');
 		    }
