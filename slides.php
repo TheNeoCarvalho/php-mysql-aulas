@@ -19,8 +19,13 @@
 			    <div class="carousel-item active">
 			      <img class="d-block w-100" src="img/'.$slide['img'].'">
 			      <div class="carousel-caption d-none d-md-block">
+<<<<<<< HEAD
 				    <h5 class="titulo">'.$slide['titulo'].'</h5>
 				    <p class="conteudo">'.$slide['descricao'].'</p>
+=======
+				    <h5>'.$slide['titulo'].'</h5>
+				    <p>'.$slide['descricao'].'</p>
+>>>>>>> 0f75668dca7b3c6e5e5992c2f162c8fb20e3204e
 			 	  </div>
 			    </div>';
 			    $class = "inativo";
@@ -30,8 +35,13 @@
 			echo '<div class="carousel-item">
 			      <img class="d-block w-100" src="img/'.$slide['img'].'">
 			      <div class="carousel-caption d-none d-md-block">
+<<<<<<< HEAD
 				   <h5 class="titulo">'.$slide['titulo'].'</h5>
 				    <p class="conteudo">'.$slide['descricao'].'</p>
+=======
+				    <h5>'.$slide['titulo'].'</h5>
+				    <p>'.$slide['descricao'].'</p>
+>>>>>>> 0f75668dca7b3c6e5e5992c2f162c8fb20e3204e
 			 	  </div>
 			    </div>';
 			
