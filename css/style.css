@@ -11,8 +11,6 @@ nav h3 { color: #fff }
 
 h3 .jumbotron { font: 55px Arial; } 
 
-.titulo {  text-align: center}
+.titulo {  font: 42px Arial; text-shadow: 1px 1px 1px #000}
 
 .conteudo {}
-
-.view {}
