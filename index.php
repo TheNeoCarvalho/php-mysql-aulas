@@ -1,5 +1,6 @@
 
-<?php include('MeuMenu.php');
+<?php 
+include('MeuMenu.php');
 
 ?>
 	<?php

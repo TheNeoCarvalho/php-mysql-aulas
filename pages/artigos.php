@@ -3,15 +3,10 @@
 	</style>
 
 	<div>
-
-
+	<?php
+		include('sidebar.php');
+	?>
 		<h3 class="jumbotron">Artigos</h3>
-		<div class="row">
-			<div class="col-md-12">
-				<a href="" data-toggle='modal' data-target='#exampleModal'>Cadastro de Artigos</a>
-			</div>
-		</div>
-		
 		<?php
 
 		error_reporting(0);
@@ -81,4 +76,4 @@
 
   
 })
-</script>
+</script>		

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Ago-2018 às 14:21
+-- Generation Time: 21-Ago-2018 às 21:13
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -28,20 +28,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `artigos` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(100) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
   `conteudo` text NOT NULL,
   `views` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `artigos`
 --
 
 INSERT INTO `artigos` (`id`, `titulo`, `conteudo`, `views`) VALUES
-(1, 'Criando alguma coisa com alguma coisa', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0),
-(2, 'officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0),
-(3, 'officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0),
-(4, 'Criando alguma coisa com alguma coisa', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0);
+(1, 'Teste', 'teste', 2),
+(2, 'Lorem', '		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3),
+(3, 'massa', 'massa 2', 0);
 
 -- --------------------------------------------------------
 
@@ -62,9 +61,32 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `titulo`, `url`, `status`, `icon`) VALUES
-(3, 'artigos', 'artigos', 'ativo', 'fa fa-file-text-o'),
+(1, 'home', 'home', 'ativo', 'fa fa-home'),
 (6, 'menu', 'menu', 'ativo', 'fa fa-bars'),
-(12, 'neop', 'neop', 'inativo', '');
+(15, 'sobre', 'sobre', 'inativo', 'fa fa-terminal'),
+(21, 'artigos', 'artigos', 'ativo', 'fa fa-file-text-o');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `slides`
+--
+
+CREATE TABLE `slides` (
+  `id` int(11) NOT NULL,
+  `img` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `descricao` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `slides`
+--
+
+INSERT INTO `slides` (`id`, `img`, `titulo`, `descricao`) VALUES
+(1, 'slide01.jpg', 'Cubo magico', 'Cubo Magico - askljdklasjdklsja dkjklsajdksj d kd  skdk d lskajdlksaj lkj kslj lksjkdlj kljd lksj lkasjlk jsakl jdklsa.'),
+(3, 'slide02.jpg', 'Punho de Ferro', 'askljdklasjdklsja dkjklsajdksj d kd  skdk d lskajdlksaj lkj kslj lksjkdlj kljd lksj lkasjlk jsakl jdklsa.'),
+(4, 'slide03.png', 'Fantasminha', 'askljdklasjdklsja dkjklsajdksj d kd  skdk d lskajdlksaj lkj kslj lksjkdlj kljd lksj lkasjlk jsakl jdklsa.');
 
 -- --------------------------------------------------------
 
@@ -95,9 +117,21 @@ INSERT INTO `usuario` (`id`, `nome`, `usuario`, `senha`, `email`, `descricao`) V
 --
 
 --
+-- Indexes for table `artigos`
+--
+ALTER TABLE `artigos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `slides`
+--
+ALTER TABLE `slides`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -105,10 +139,20 @@ ALTER TABLE `menu`
 --
 
 --
+-- AUTO_INCREMENT for table `artigos`
+--
+ALTER TABLE `artigos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `slides`
+--
+ALTER TABLE `slides`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
