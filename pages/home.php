@@ -1,1 +1,3 @@
-<h3>HOME</h3>
+<?php
+include('slides.php');
+?>
