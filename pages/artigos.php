@@ -5,7 +5,7 @@
 	<div>
 		<h3 class="jumbotron">Artigos</h3>
 		<?php
-
+		include('sidebar.php');
 		error_reporting(0);
 		$sql = "SELECT * FROM artigos ORDER BY views DESC";
 		$query = mysqli_query($conexao, $sql);

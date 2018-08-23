@@ -16,9 +16,10 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head><title>Dashboard Admin</title>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<!--<script type="text/javascript" src="js/bootstrap.min.js"></script>	-->
+<head>
+	<title>Dashboard Admin</title>
+	<!--<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>	-->
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	 <link href="css/pace-theme-minimal.css" rel="stylesheet" />
