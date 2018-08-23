@@ -3,9 +3,6 @@
 	</style>
 
 	<div>
-	<?php
-		include('sidebar.php');
-	?>
 		<h3 class="jumbotron">Artigos</h3>
 		<?php
 
